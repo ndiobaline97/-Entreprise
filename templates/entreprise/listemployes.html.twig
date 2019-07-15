@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}  LISTE EMPLOYES {% endblock %}
+{% block body %}
+<div class="container">
+    <center><h2>LISTE DES EMPLOYES</h2></center>
+        <table class="table" id="table table-bordered style=width:100%">
+            <thead>
+                <th>Matricule</th>
+                <th>Nom Complet</th>
+                <th>Date Naissance</th>
+                <th>Service</th>
+                <th>Salaire</th>
+                <th>paramètre</th>
+
+            </thead>
+            <tbody>
+                {% for personne in employes %}
+                <tr>
+                    <td>{{personne.matricule}}</td>
+                    <td>{{personne.nomComplet}}</td>
+                    <td>{{personne.dateNaissance | date('d/m/Y')}}</td>
+                    <td>{{personne.salaire}}</td>
+                    <td>{{personne.idService.nomservice}}</td>
+                    <td><a href="{{path('employeupdate',{'id':personne.id}) }}"><button class="btn btn-success">MODIFIER</button></a></td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+ <script>
+        $(document).ready(function() {
+    $('#id').DataTable( {
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ]
+    } );
+} );
+
+    </script>
+        </table>
+</div>
+
+{% endblock %}
+{% block script %}
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>                      
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+{% endblock %}

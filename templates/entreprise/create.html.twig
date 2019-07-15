@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <h1>Enregistrement d'un nouvel employé</h1>
+            {{form_start(formEmploye)}}
+            
+            {{form_row(formEmploye.matricule)}}
+            {{form_row(formEmploye.nomComplet)}}
+            {{form_row(formEmploye.dateNaissance)}}
+            {{form_row(formEmploye.salaire)}}
+            {{form_row(formEmploye.idService)}}
+            <button type="submit" class="btn btn-success"> 
+            {% if(modeajout)%}
+            ENREGISTRER MODIFICATION
+            {% else %}
+            AJOUTER
+            {% endif %}
+            </button>
+            {{ form_end(formEmploye)}}
+          
+
+    {% endblock %}
